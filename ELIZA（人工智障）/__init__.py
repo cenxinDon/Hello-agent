@@ -40,6 +40,13 @@ rules = {
     ]
 }
 
+memory = {
+    "name": None,   # 姓名
+    "age": None,    # 年龄
+    "job": None     # 职业
+}
+
+
 # 定义代词转换规则
 pronoun_swap = {
     "i": "you", "you": "i", "me": "you", "my": "your",
