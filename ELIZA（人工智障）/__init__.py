@@ -104,6 +104,11 @@ def respond(user_input):
             swapped_group = swap_pronouns(captured_group)
             # 从模板中随机选择一个并格式化
             response = random.choice(responses).format(swapped_group)
+
+            if memory["name"] and "you" in response and random.random() < 0.3:  # 30%概率引用姓名
+                response = response.replace("you", memory["name"], 1)  # 替换第一个"you"为姓名
+
+
             return response
     # 如果没有匹配任何特定规则，使用最后的通配符规则
     return random.choice(rules[r'.*'])
