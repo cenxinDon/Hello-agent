@@ -120,7 +120,11 @@ if __name__ == '__main__':
     while True:
         user_input = input("You: ")
         if user_input.lower() in ["quit", "exit", "bye"]:
-            print("Therapist: Goodbye. It was nice talking to you.")
+            # 退出时引用记忆（如果记住了姓名）
+            if memory["name"]:
+                print(f"Therapist: Goodbye, {memory['name']}. It was nice talking to you.")
+            else:
+                print("Therapist: Goodbye. It was nice talking to you.")
             break
         response = respond(user_input)
         print(f"Therapist: {response}")
