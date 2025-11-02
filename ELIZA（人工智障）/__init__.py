@@ -66,6 +66,32 @@ def swap_pronouns(phrase):
 
 
 def respond(user_input):
+    global memory  # 引用全局的memory字典
+
+    # 4. 优先检测并记忆关键信息（姓名、年龄、职业）
+    # 检测姓名
+    name_match = re.search(r'My name is (.*)', user_input, re.IGNORECASE)
+    if name_match:
+        name = name_match.group(1).strip()  # 提取姓名（去除前后空格）
+        memory["name"] = name  # 存入记忆
+
+    # 检测年龄
+    age_match = re.search(r'I am (\d+) years old', user_input, re.IGNORECASE)
+    if age_match:
+        age = age_match.group(1)
+        memory["age"] = age  # 存入记忆
+
+    # 检测职业
+    job_match1 = re.search(r'I work as a (.*)', user_input, re.IGNORECASE)
+    job_match2 = re.search(r'I am a (.*)', user_input, re.IGNORECASE)
+    if job_match1:
+        job = job_match1.group(1).strip()
+        memory["job"] = job
+    elif job_match2:
+        job = job_match2.group(1).strip()
+        memory["job"] = job
+
+def respond(user_input):
     """
     根据规则库生成响应
     """
